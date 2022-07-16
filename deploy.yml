@@ -5,3 +5,10 @@
     apt_key:
         url: https://apt.releases.hashicorp.com/gpg
         state: present
+  - debug:
+      msg: {{ ansible_lsb }}
+        
+  #- name: Add repository
+   # apt_repository:
+   #   repo: deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main
+   #   state: present
