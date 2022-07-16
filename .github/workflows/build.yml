@@ -28,7 +28,7 @@ jobs:
         run: python3 -m venv /tmp/build && source /tmp/build/bin/activate
 
       - name: Install dependency packages and tools
-        run: pip install --upgrade pip && pip install 'ansible==2.9'
+        run: pip install --upgrade pip && pip install 'ansible==2.9' python-apt
         
       - name: Setup credentials and permissions
         env: 
