@@ -5,10 +5,13 @@
     apt_key:
         url: https://apt.releases.hashicorp.com/gpg
         state: present
-  - debug:
-      msg: "{{ ansible_facts.lsb.codename }}"
-        
-  #- name: Add repository
-   # apt_repository:
-   #   repo: deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main
-   #   state: present
+                
+  - name: Add repository
+    apt_repository:
+      repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_facts.lsb.codename }} main"
+      state: present
+
+  - name: Install valut package
+    package:
+      name: vault
+      state: present
