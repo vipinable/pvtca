@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+  - name: Add an apt key by id from a keyserver
+    apt_key:
+        keyserver: apt.releases.hashicorp.com
+        id: E8A032E094D8EB4EA189D270DA418C88A3219F7B
