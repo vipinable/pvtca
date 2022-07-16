@@ -6,7 +6,7 @@
         url: https://apt.releases.hashicorp.com/gpg
         state: present
   - debug:
-      msg: {{ ansible_lsb }}
+      msg: "{{ ansible_facts }}"
         
   #- name: Add repository
    # apt_repository:
