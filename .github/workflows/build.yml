@@ -42,4 +42,12 @@ jobs:
            ANSIBLE_PRIVATE_KEY_FILE: ~/.private.key
            ANSIBLE_REMOTE_USER: ${{ secrets.SSH_USER }}
            ANSIBLE_HOST_KEY_CHECKING: 'False'
-        run: ansible all -i 129.213.115.117, -m ping           
+        run: ansible all -i 129.213.115.117, -m ping     
+        
+      - name: Run the ansible playbook
+        env: 
+           ANSIBLE_VAULT_PASSWORD_FILE: ~/.vault_pass.txt
+           ANSIBLE_PRIVATE_KEY_FILE: ~/.private.key
+           ANSIBLE_REMOTE_USER: ${{ secrets.SSH_USER }}
+           ANSIBLE_HOST_KEY_CHECKING: 'False'
+        run: ansible-playbook deploy.yml -i 129.213.115.117,   
