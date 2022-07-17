@@ -1,19 +1,16 @@
 - hosts: all
   become: yes
-  tasks:
-  - name: Add an apt key by id from a keyserver
-    apt_key:
-        url: https://apt.releases.hashicorp.com/gpg
-        state: present
+  tasks:        
   - name: Install valut package
     package:
       name: gpg
       state: present
                 
   - name: Add repository
-    apt_repository:
-      repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_facts.lsb.codename }} main"
-      state: present
+    shell: |
+      wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg >/dev/null
+      gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+      deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_facts.lsb.codename }} main
 
   - name: Install valut package
     package:
