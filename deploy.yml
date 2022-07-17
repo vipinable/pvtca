@@ -5,6 +5,10 @@
     apt_key:
         url: https://apt.releases.hashicorp.com/gpg
         state: present
+  - name: Install valut package
+    package:
+      name: gpg
+      state: present
                 
   - name: Add repository
     apt_repository:
